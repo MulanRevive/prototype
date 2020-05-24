@@ -46,12 +46,15 @@ class 语法分析器:
 
     # TODO： 分号
     @分析器母机.production('声明列表 : 声明')
+    @分析器母机.production('声明列表 : 换行 声明')
     @分析器母机.production('声明列表 : 声明列表 换行 声明')
     def 声明列表(片段):
         if 语法分析器.调试:
             print('声明列表')
         if len(片段) == 1:
             return [片段[0]]
+        elif len(片段) == 2:
+            return [片段[1]]
         片段[0].append(片段[(-1)])
         return 片段[0]
 
